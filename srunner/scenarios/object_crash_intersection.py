@@ -167,7 +167,7 @@ class VehicleTurningRight(BasicScenario):
                 self._other_actor_transform = get_opponent_transform(added_dist, waypoint, self._trigger_location)
                 first_vehicle = CarlaDataProvider.request_new_actor(
                     'vehicle.diamondback.century', self._other_actor_transform)
-                first_vehicle.set_simulate_physics(enabled=False)
+                first_vehicle.set_enable_gravity(enabled=False)
                 break
 
             # Move the spawning point a bit and try again
@@ -186,7 +186,7 @@ class VehicleTurningRight(BasicScenario):
                            self._other_actor_transform.location.z - 500),
             self._other_actor_transform.rotation)
         first_vehicle.set_transform(actor_transform)
-        first_vehicle.set_simulate_physics(enabled=False)
+        first_vehicle.set_enable_gravity(enabled=False)
         self.other_actors.append(first_vehicle)
 
     def _create_behavior(self):
@@ -235,7 +235,7 @@ class VehicleTurningRight(BasicScenario):
 
         # building the tree
         root.add_child(scenario_sequence)
-        scenario_sequence.add_child(ActorTransformSetter(self.other_actors[0], self._other_actor_transform,
+        scenario_sequence.add_child(ActorTransformSetter(self.other_actors[0], self._other_actor_transform, gravity=True,
                                                          name='TransformSetterTS4'))
         scenario_sequence.add_child(HandBrakeVehicle(self.other_actors[0], True))
         scenario_sequence.add_child(trigger_distance)
@@ -334,7 +334,7 @@ class VehicleTurningLeft(BasicScenario):
                 self._other_actor_transform = get_opponent_transform(added_dist, waypoint, self._trigger_location)
                 first_vehicle = CarlaDataProvider.request_new_actor(
                     'vehicle.diamondback.century', self._other_actor_transform)
-                first_vehicle.set_simulate_physics(enabled=False)
+                first_vehicle.set_enable_gravity(enabled=False)
                 break
 
             # Move the spawning point a bit and try again
@@ -353,7 +353,7 @@ class VehicleTurningLeft(BasicScenario):
                            self._other_actor_transform.location.z - 500),
             self._other_actor_transform.rotation)
         first_vehicle.set_transform(actor_transform)
-        first_vehicle.set_simulate_physics(enabled=False)
+        first_vehicle.set_enable_gravity(enabled=False)
         self.other_actors.append(first_vehicle)
 
     def _create_behavior(self):
@@ -402,7 +402,7 @@ class VehicleTurningLeft(BasicScenario):
 
         # building the tree
         root.add_child(scenario_sequence)
-        scenario_sequence.add_child(ActorTransformSetter(self.other_actors[0], self._other_actor_transform,
+        scenario_sequence.add_child(ActorTransformSetter(self.other_actors[0], self._other_actor_transform, gravity=True,
                                                          name='TransformSetterTS4'))
         scenario_sequence.add_child(HandBrakeVehicle(self.other_actors[0], True))
         scenario_sequence.add_child(trigger_distance)
@@ -502,7 +502,7 @@ class VehicleTurningRoute(BasicScenario):
                 self._other_actor_transform = get_opponent_transform(added_dist, waypoint, self._trigger_location)
                 first_vehicle = CarlaDataProvider.request_new_actor(
                     'vehicle.diamondback.century', self._other_actor_transform)
-                first_vehicle.set_simulate_physics(enabled=False)
+                first_vehicle.set_enable_gravity(enabled=False)
                 break
 
             # Move the spawning point a bit and try again
@@ -521,7 +521,7 @@ class VehicleTurningRoute(BasicScenario):
                            self._other_actor_transform.location.z - 500),
             self._other_actor_transform.rotation)
         first_vehicle.set_transform(actor_transform)
-        first_vehicle.set_simulate_physics(enabled=False)
+        first_vehicle.set_enable_gravity(enabled=False)
         self.other_actors.append(first_vehicle)
 
     def _create_behavior(self):
@@ -570,7 +570,7 @@ class VehicleTurningRoute(BasicScenario):
 
         # building the tree
         root.add_child(scenario_sequence)
-        scenario_sequence.add_child(ActorTransformSetter(self.other_actors[0], self._other_actor_transform,
+        scenario_sequence.add_child(ActorTransformSetter(self.other_actors[0], self._other_actor_transform, gravity=True,
                                                          name='TransformSetterTS4'))
         scenario_sequence.add_child(HandBrakeVehicle(self.other_actors[0], True))
         scenario_sequence.add_child(trigger_distance)

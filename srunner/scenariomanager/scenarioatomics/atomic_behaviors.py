@@ -1866,13 +1866,14 @@ class ActorTransformSetter(AtomicBehavior):
     Therefore: calculate_distance(actor, transform) < 1 meter
     """
 
-    def __init__(self, actor, transform, physics=True, name="ActorTransformSetter"):
+    def __init__(self, actor, transform, physics=True, gravity=None, name="ActorTransformSetter"):
         """
         Init
         """
         super(ActorTransformSetter, self).__init__(name, actor)
         self._transform = transform
         self._physics = physics
+        self._gravity = gravity
         self.logger.debug("%s.__init__()" % (self.__class__.__name__))
 
     def initialise(self):
@@ -1894,6 +1895,8 @@ class ActorTransformSetter(AtomicBehavior):
         if calculate_distance(self._actor.get_location(), self._transform.location) < 1.0:
             if self._physics:
                 self._actor.set_simulate_physics(enabled=True)
+            if self._gravity:
+                self._actor.set_enable_gravity(enabled=self._gravity)
             new_status = py_trees.common.Status.SUCCESS
 
         return new_status
